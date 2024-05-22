@@ -34,7 +34,7 @@ router.post("/api/spendings", async (req, res) => {
 
 const deductFromBalance = async (amount) => {
   try {
-    const response = await fetch("http://localhost:3001/api/balance/withdrawal", {
+    const response = await fetch("https://fintracker-1.onrender.com//api/balance/withdrawal", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

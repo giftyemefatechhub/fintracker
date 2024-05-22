@@ -15,7 +15,8 @@ const {fileURLToPath} = require('url')
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json()); // Parse incoming JSON requests
-app.use("/", spendingRoute);
+
+
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -143,9 +144,14 @@ app.get("/api/transactions", async (req, res) => {
 });
 
 // Root path route handler
-app.get("/", (req, res) => {
-  res.send("Server is running.");
-});
+// app.get("/", (req, res) => {
+//   res.send("Server is running.");
+// });
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../fintracker/dist/index.html'))
+})
+app.use('/', spendingRoute)
 
 // Start the server
 const PORT = process.env.PORT || 3001;
