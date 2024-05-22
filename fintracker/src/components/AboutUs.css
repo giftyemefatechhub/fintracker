@@ -1,0 +1,81 @@
+/* src/AboutUs.css */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+html {
+  box-sizing:content-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  flex: 1; /* Let each team member take equal space */
+  padding: 0 8px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+.about-section {
+  padding: 100px 0; /* Increase padding for hero section */
+  text-align: center;
+  background-color: #474e5d;
+  color: white;
+  background: radial-gradient(circle at 0% 0%, #EEEAEC, #BEC3FC);
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    flex: 0 0 100%; /* Each team member takes 100% width on small screens */
+    margin-bottom: 16px; /* Add some space between team members on small screens */
+  }
+}
+
+/* Adjustments for full-width layout */
+.about-section {
+  width: 100%;
+  margin: 0 auto; /* Center the about section horizontally */
+  max-width: 100%; /* Limit the width of the about section */
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
+  justify-content: center; /* Center the team members horizontally */
+}

@@ -1,0 +1,59 @@
+/* LoginNav.css */
+
+.navbar {
+  background-color: #ffffff; /* Navbar background color */
+  padding: 15px; /* Padding for navbar */
+  position: fixed; /* Fix the navbar at the top */
+  top: 0; /* Position it at the very top */
+  width: 100%; /* Make it span the full width of the page */
+  z-index: 1000; /* Ensure it stays above other elements */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
+}
+
+.container-fluid {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space items evenly horizontally */
+  align-items: center; /* Align items vertically */
+}
+
+.navbar-brand {
+  font-size: 1.5rem; /* Font size for brand */
+  font-weight: bold; /* Bold font weight for brand */
+  color: #333333; /* Text color for brand */
+  text-decoration: none; /* Remove underline from brand */
+}
+
+.navbar-nav {
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Align items vertically */
+}
+
+.nav-item {
+  margin-right: 15px; /* Margin between nav items */
+}
+
+.nav-link {
+  color: #333333; /* Text color for nav links */
+  text-decoration: none; /* Remove underline from nav links */
+}
+
+.dropdown-toggle {
+  background-color: #ffffff; /* Background color for dropdown toggle */
+  color: #333333; /* Text color for dropdown toggle */
+  border: none; /* Remove border from dropdown toggle */
+}
+
+.dropdown-menu {
+  background-color: #ffffff; /* Background color for dropdown menu */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Box shadow for dropdown menu */
+  border: none; /* Remove border from dropdown menu */
+}
+
+.dropdown-item {
+  color: #333333; /* Text color for dropdown items */
+  text-decoration: none; /* Remove underline from dropdown items */
+}
+
+.dropdown-item:hover {
+  background-color: #f2f2f2; /* Background color for dropdown items on hover */
+}

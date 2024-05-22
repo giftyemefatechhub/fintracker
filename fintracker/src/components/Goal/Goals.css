@@ -1,0 +1,54 @@
+.goal-container {
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.goal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.goal-form input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.goal-form button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.goal-form button:hover {
+  background-color: #45a049;
+}
+
+.goal-list {
+  margin-top: 20px;
+}
+
+.goal-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.goal-list li {
+  padding: 10px;
+  background-color: white;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.goal-list li div {
+  margin-bottom: 5px;
+}

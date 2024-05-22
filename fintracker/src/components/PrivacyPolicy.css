@@ -1,0 +1,15 @@
+/* PrivacyPolicy.css */
+.privacy-policy-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.privacy-policy-container h2 {
+  margin-bottom: 20px;
+}
+
+.privacy-policy-container p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
