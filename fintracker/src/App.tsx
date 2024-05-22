@@ -1,4 +1,3 @@
-// src/App.tsx
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./components/Home";
@@ -45,13 +44,17 @@ const App: React.FC = () => {
 
   const fetchId = async () => {
     try {
-      const response = await fetch("https://fintracker-1.onrender.com//signup/id");
+      const response = await fetch("https://fintracker-1.onrender.com/signup/id");
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
       setId(data._id);
     } catch (error) {
       console.error("Error fetching user ID:", error);
     }
   };
+  
 
   const handleLogin = () => {
     setIsLoggedIn(true);

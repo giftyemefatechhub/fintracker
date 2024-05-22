@@ -91,12 +91,21 @@ app.get("/login/:username", async (req, res) => {
 
 app.get("/signup/:id", async (req, res) => {
   try {
-    res.json({}); // Placeholder response
+    // Fetch user data based on ID
+    const userId = req.params.id;
+    const user = await Signup.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.status(200).json(user);
   } catch (error) {
     console.error("Error fetching signup data:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
 
 app.get("/api/goals", async (req, res) => {
   try {
