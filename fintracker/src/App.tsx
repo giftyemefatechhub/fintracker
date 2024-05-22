@@ -45,7 +45,7 @@ const App: React.FC = () => {
 
   const fetchId = async () => {
     try {
-      const response = await fetch("http://localhost:3001/signup/id");
+      const response = await fetch("https://fintracker-1.onrender.com//signup/id");
       const data = await response.json();
       setId(data._id);
     } catch (error) {

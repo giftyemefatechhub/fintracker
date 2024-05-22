@@ -20,7 +20,7 @@ const Admin: React.FC = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch('http://localhost:3001/admin/users');
+      const response = await fetch('https://fintracker-1.onrender.com//admin/users');
       if (!response.ok) {
         throw new Error("Failed to fetch users");
       }
@@ -33,7 +33,7 @@ const Admin: React.FC = () => {
 
   const handleActivationToggle = async (id: string, isActive: boolean) => {
     try {
-      const response = await fetch(`http://localhost:3001/admin/users/${id}`, {
+      const response = await fetch(`https://fintracker-1.onrender.com//admin/users/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
