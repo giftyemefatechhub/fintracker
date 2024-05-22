@@ -7,21 +7,17 @@ const bodyParser = require("body-parser");
 const spendingRoute = require("./spendingRoute");
 const dashboardRoutes = require("./dashboardRoutes");
 const contactRoutes = require("./contact");
-const Signup = require("./models/Signup"); 
-const path = require('path')
-const {fileURLToPath} = require('url')
+const Signup = require("./models/Signup");
+const path = require('path');
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json()); // Parse incoming JSON requests
 
+const __dirname_import = path.dirname(require.main.filename); // Use __dirname to get the directory name of the current module
 
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-
-app.use(express.static(path.join(__dirname, '../fintracker/dist')))
+app.use(express.static(path.join(__dirname_import, '../fintracker/dist')));
 
 // Connect to MongoDB
 mongoose
@@ -52,7 +48,7 @@ app.get("/admin/users", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-// server.js
+
 app.patch("/admin/users/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -72,9 +68,9 @@ app.patch("/admin/users/:id", async (req, res) => {
   }
 });
 
-// Admin login route
 app.post("/admin/login", async (req, res) => {
   const { username, password } = req.body;
+
   // Perform admin login logic here
   // Example:
   if (username === "admin" && password === "adminpassword") {
@@ -84,11 +80,8 @@ app.post("/admin/login", async (req, res) => {
   }
 });
 
-// Get method for retrieving login data
 app.get("/login/:username", async (req, res) => {
   try {
-    // Retrieve login data based on username
-    // Code to retrieve login data
     res.json({}); // Placeholder response
   } catch (error) {
     console.error("Error fetching login data:", error);
@@ -96,11 +89,8 @@ app.get("/login/:username", async (req, res) => {
   }
 });
 
-// Get method for retrieving signup data
 app.get("/signup/:id", async (req, res) => {
   try {
-    // Retrieve signup data based on id
-    // Code to retrieve signup data
     res.json({}); // Placeholder response
   } catch (error) {
     console.error("Error fetching signup data:", error);
@@ -108,11 +98,8 @@ app.get("/signup/:id", async (req, res) => {
   }
 });
 
-// Get method for retrieving goals data
 app.get("/api/goals", async (req, res) => {
   try {
-    // Retrieve goals data
-    // Code to retrieve goals data
     res.json({}); // Placeholder response
   } catch (error) {
     console.error("Error fetching goals data:", error);
@@ -120,11 +107,8 @@ app.get("/api/goals", async (req, res) => {
   }
 });
 
-// Route handler for retrieving dashboard data
 app.get("/api/dashboard", async (req, res) => {
   try {
-    // Retrieve dashboard data
-    // Code to retrieve dashboard data
     res.json({}); // Placeholder response
   } catch (error) {
     console.error("Error fetching dashboard data:", error);
@@ -132,28 +116,21 @@ app.get("/api/dashboard", async (req, res) => {
   }
 });
 
-// Route handler for retrieving transactions data
 app.get("/api/transactions", async (req, res) => {
   try {
-    // Retrieve transactions data
-    res.json({});
+    res.json({}); // Placeholder response
   } catch (error) {
     console.error("Error fetching transactions data:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
 
-// Root path route handler
-// app.get("/", (req, res) => {
-//   res.send("Server is running.");
-// });
-
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../fintracker/dist/index.html'))
-})
-app.use('/', spendingRoute)
+  res.sendFile(path.join(__dirname_import, '../fintracker/dist/index.html'));
+});
 
-// Start the server
+app.use('/', spendingRoute);
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
