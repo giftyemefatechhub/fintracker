@@ -1,3 +1,4 @@
+// src/App.tsx
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./components/Home";
@@ -7,12 +8,12 @@ import Signup from "./components/Signup";
 import About from "./components/AboutUs";
 import Contact from "./components/ContactUs";
 import Admin from "./components/Admin";
-import AdminLogin from "./components/AdminLogin"; // Import the AdminLogin component
+import AdminLogin from "./components/AdminLogin";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import Dashboard from "./components/Dashboard";
-import LoginNav from "./components/LoginNav"; 
-import Logout from "./components/Logout"; 
-import Goal from "./components/Goal/index"; 
+import LoginNav from "./components/LoginNav";
+import Logout from "./components/Logout";
+import Goal from "./components/Goal/index";
 import Balance from "./components/Balance/index";
 import Spendings from "./components/Spendings/index";
 
@@ -97,18 +98,16 @@ const App: React.FC = () => {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/admin" element={<Admin />} />
-            // Inside the return statement of App.tsx
-            <Route path="/admin/login" element={<AdminLogin onAdminLogin={handleLogin} />} /> // Route for Admin login
-
+            <Route path="/admin/login" element={<AdminLogin onAdminLogin={handleLogin} />} /> {/* Route for Admin login */}
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/dashboard" element={
-              isLoggedIn ? <Dashboard 
-                goal={goal} 
-                setGoal={setGoal} 
-                balance={balance} 
-                topUpBalance={topUpBalance} 
-                transactions={transactions} 
-                addTransaction={addTransaction} 
+              isLoggedIn ? <Dashboard
+                goal={goal}
+                setGoal={setGoal}
+                balance={balance}
+                topUpBalance={topUpBalance}
+                transactions={transactions}
+                addTransaction={addTransaction}
                 togglePaymentStatus={togglePaymentStatus}
               /> : <Navigate to="/" />
             } />
