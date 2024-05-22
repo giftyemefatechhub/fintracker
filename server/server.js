@@ -8,12 +8,19 @@ const spendingRoute = require("./spendingRoute");
 const dashboardRoutes = require("./dashboardRoutes");
 const contactRoutes = require("./contact");
 const Signup = require("./models/Signup"); 
+const path = require('path')
+const {fileURLToPath} = require('url')
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json()); // Parse incoming JSON requests
 app.use("/", spendingRoute);
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+app.use(express.static(path.join(__dirname, '../fintracker/dist')))
 
 // Connect to MongoDB
 mongoose
