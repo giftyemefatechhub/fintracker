@@ -8,7 +8,10 @@ const Signup = require("./models/Signup"); // Corrected import path
 const path = require('path');
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: "*"
+}));
+
 app.use(express.json());
 app.use(bodyParser.json()); // Parse incoming JSON requests
 
@@ -60,6 +63,17 @@ app.patch("/admin/users/:id", async (req, res) => {
     res.status(200).json({ message: "User status updated successfully", user });
   } catch (error) {
     console.error("Error updating user status:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+app.post("/signup", async (req, res) => {
+  try {
+    const newUser = new Signup(req.body);
+    const savedUser = await newUser.save();
+    res.status(201).json(savedUser);
+  } catch (error) {
+    console.error("Error creating user:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
