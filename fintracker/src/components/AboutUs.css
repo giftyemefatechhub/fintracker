@@ -1,11 +1,11 @@
 /* src/AboutUs.css */
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0;
-}
 
-html {
-  box-sizing:content-box;
 }
 
 *, *:before, *:after {

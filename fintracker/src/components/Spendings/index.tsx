@@ -14,6 +14,7 @@ type Transaction = {
 };
 
 interface SpendingsProps {
+  balance: number;
   transactions: Transaction[];
   addTransaction: (transaction: Transaction) => void;
   togglePaymentStatus: (id: number) => void;
@@ -21,6 +22,7 @@ interface SpendingsProps {
 
 const Spendings: React.FC<SpendingsProps> = ({
   transactions,
+  balance,
   addTransaction,
   togglePaymentStatus
 }) => {
@@ -32,6 +34,7 @@ const Spendings: React.FC<SpendingsProps> = ({
   const [receiver, setReceiver] = useState("");
   const [receiverBankNumber, setReceiverBankNumber] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCategory(e.target.value);
@@ -72,6 +75,16 @@ const Spendings: React.FC<SpendingsProps> = ({
 
   const handlePay = () => {
     if (selectedCategory && typeof amount === 'number' && amount > 0) {
+      // Calculate the total amount of unpaid transactions plus the current transaction
+      const totalUnpaidAmount = transactions
+        .filter(transaction => !transaction.paid)
+        .reduce((sum, transaction) => sum + transaction.amount, 0) + amount;
+
+      if (totalUnpaidAmount > balance) {
+        setErrorMessage("You don't have enough funds, please top up your balance.");
+        return;
+      }
+
       const newTransaction: Transaction = {
         id: transactions.length + 1,
         category: selectedCategory,
@@ -88,8 +101,9 @@ const Spendings: React.FC<SpendingsProps> = ({
       setReceiver("");
       setReceiverBankNumber("");
       setPaymentMethod("");
+      setErrorMessage(""); // Clear error message if payment is successful
     } else {
-      alert("Please fill in all required fields");
+      setErrorMessage("Please fill in all required fields.");
     }
   };
 
@@ -172,6 +186,7 @@ const Spendings: React.FC<SpendingsProps> = ({
           </select>
         </div>
         <button className="btn btn-primary" onClick={handlePay}>Pay</button>
+        {errorMessage && <p className="text-danger mt-3">{errorMessage}</p>}
       </div>
 
       <div className="transaction-history">

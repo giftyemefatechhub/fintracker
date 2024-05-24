@@ -1,0 +1,12 @@
+.navbar{
+    
+    height: 80px;
+}
+.navbar-custom{
+    background-color: #633bb5;
+}
+
+.container-fluid img {
+    width: 70px;
+    height: 70px;
+}

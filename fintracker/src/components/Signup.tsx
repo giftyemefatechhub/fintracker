@@ -21,13 +21,22 @@ const Signup: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      // Simulating signup success
-      setTimeout(() => {
+      const response = await fetch("/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
         console.log("Signup successful!");
 
         // Redirect to login page
         window.location.href = "/login";
-      }, 1000);
+      } else {
+        console.error("Signup failed:", response.statusText);
+      }
     } catch (error) {
       console.error("Signup failed:", error);
     }

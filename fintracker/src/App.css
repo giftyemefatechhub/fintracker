@@ -1,8 +1,11 @@
-#root {
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+
+body {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+
 }
 
 .logo {
@@ -43,7 +46,7 @@
 /* Login.css and Signup.css (or any other CSS file for your forms) */
 
 .form-container {
-    max-width: 400px;
+    max-width: 800px;
     margin: 0 auto; /* This centers the form horizontally */
     padding: 20px;
     border: 1px solid #ccc;
@@ -71,17 +74,20 @@
     border-radius: 5px;
 }
 
-.form-group button {
+.form-group  {
     width: 100%;
     padding: 10px;
     border: none;
     border-radius: 5px;
     background-color: #007bff;
-    color: #fff;
+    color: #711bda;
     cursor: pointer;
+}
+button{
+  background-color: #711bda;
 }
 
 .form-group button:hover {
     background-color: #0056b3;
 }
-/* Add this CSS to your global styles or Footer.css file */
+

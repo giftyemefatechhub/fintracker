@@ -31,8 +31,8 @@ const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [_id, setId] = useState<string>("");
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [balance, setBalance] = useState<number>(1000); // Initial balance
-  const [goal, setGoal] = useState<number>(500); // Example goal
+  const [balance, setBalance] = useState<number>(0); // Initial balance set to 0
+  const [goal, setGoal] = useState<number>(0); // Example goal
 
   useEffect(() => {
     const loggedIn = localStorage.getItem("isLoggedIn");
@@ -91,8 +91,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <div>
-        {isLoggedIn && <LoginNav />}
-        {!isLoggedIn && <Navbar />}
+        {isLoggedIn ? <LoginNav /> : <Navbar />}
         <div style={{ paddingTop: isLoggedIn ? "80px" : "0" }}>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -117,7 +116,7 @@ const App: React.FC = () => {
             <Route path="/logout" element={<Logout />} />
             <Route path="/goal" element={<Goal goal={goal} setGoal={setGoal} />} />
             <Route path="/balance" element={<Balance balance={balance} topUpBalance={topUpBalance} />} />
-            <Route path="/spendings" element={<Spendings transactions={transactions} addTransaction={addTransaction} togglePaymentStatus={togglePaymentStatus} />} />
+            <Route path="/spendings" element={<Spendings transactions={transactions} balance={balance} addTransaction={addTransaction} togglePaymentStatus={togglePaymentStatus} />} />
           </Routes>
         </div>
       </div>

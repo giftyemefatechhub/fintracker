@@ -24,17 +24,29 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://fintracker-1.onrender.com//login", {
+      const response = await fetch("https://fintracker-1.onrender.com/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
+
+      const contentType = response.headers.get("Content-Type");
+      let errorData;
+
+      if (contentType && contentType.includes("application/json")) {
+        errorData = await response.json();
+      } else {
+        // Handle non-JSON response, likely an HTML error page
+        const textData = await response.text();
+        throw new Error(`Unexpected response format: ${textData}`);
+      }
+
       if (!response.ok) {
-        const errorData = await response.json();
         throw new Error(errorData.error);
       }
+
       console.log("Login successful!");
 
       onLogin(); // Call the onLogin function passed from App
@@ -43,7 +55,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       window.location.href = "/dashboard"; // Redirect to the dashboard
     } catch (error: any) {
       console.error("Login failed:", error);
-      setErrorMessage(error.message as string); // Set error message state
+      setErrorMessage(error.message); // Set error message state
     }
   };
 

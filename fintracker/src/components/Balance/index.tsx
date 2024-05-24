@@ -1,5 +1,5 @@
-// src/components/Balance/index.tsx
-import React from 'react';
+import React, { useState } from 'react';
+import "./Balance.css";
 
 interface BalanceProps {
   balance: number;
@@ -7,19 +7,51 @@ interface BalanceProps {
 }
 
 const Balance: React.FC<BalanceProps> = ({ balance, topUpBalance }) => {
+  const [amount, setAmount] = useState<number>(0);
+  const [method, setMethod] = useState<string>('cash');
+
+  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAmount(parseFloat(e.target.value));
+  };
+
+  const handleMethodChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setMethod(e.target.value);
+  };
+
   const handleTopUp = () => {
-    const amount = parseFloat(prompt('Enter amount to top up:') || '0');
-    const method = prompt('Enter payment method:');
     if (amount > 0 && method) {
       topUpBalance(amount, method);
     } else {
-      alert('Please enter a valid amount and payment method.');
+      alert('Please enter a valid amount and select a payment method.');
     }
   };
 
   return (
     <div>
-      <h2>Balance: {balance}</h2>
+      <h2>Balance: ${balance.toFixed(2)}</h2>
+      <div>
+        <label>
+          Amount:
+          <input
+            type="number"
+            value={amount}
+            onChange={handleAmountChange}
+            placeholder="Enter amount to top up"
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Payment Method:
+          <select value={method} onChange={handleMethodChange}>
+            <option value="cash">Cash</option>
+            <option value="swish">Swish</option>
+            <option value="stripe">Stripe</option>
+            <option value="card">Card</option>
+            <option value="paypal">PayPal</option>
+          </select>
+        </label>
+      </div>
       <button onClick={handleTopUp}>Top Up Balance</button>
     </div>
   );

@@ -4,10 +4,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const spendingRoute = require("./spendingRoute");
-const dashboardRoutes = require("./dashboardRoutes");
-const contactRoutes = require("./contact");
-const Signup = require("./models/Signup");
+const Signup = require("./models/Signup"); // Corrected import path
 const path = require('path');
 
 // Middleware
@@ -21,22 +18,23 @@ app.use(express.static(path.join(__dirname_import, '../fintracker/dist')));
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGODB_URI, {})
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to MongoDB Atlas"))
   .catch((err) => console.error("Error connecting to MongoDB Atlas:", err));
 
-// Importing routes
+// Define routes
 const loginRoute = require("./loginRoute");
-const signupRoute = require("./signupRoute");
+const signupRoute = require("./signupRoute"); // Corrected import path
 const goalRoutes = require("./goalRoutes");
 const transactionRoute = require("./transactions"); // Import the transactions route
+const dashboardRoutes = require("./dashboardRoutes");
+const contactRoutes = require("./contact");
 
-// Define routes
 app.use("/login", loginRoute);
 app.use("/signup", signupRoute);
 app.use("/api/goals", goalRoutes);
-app.use("/api/balances", transactionRoute); // Use the transactions route
-app.use("/api/dashboard", dashboardRoutes); // Use the dashboard routes
+app.use("/api/balances", transactionRoute);
+app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/contact", contactRoutes);
 
 app.get("/admin/users", async (req, res) => {
@@ -54,9 +52,7 @@ app.patch("/admin/users/:id", async (req, res) => {
     const { id } = req.params;
     const { isActive } = req.body;
 
-    // Find the user by ID and update the isActive field
     const user = await Signup.findByIdAndUpdate(id, { isActive }, { new: true });
-
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
@@ -80,6 +76,7 @@ app.post("/admin/login", async (req, res) => {
   }
 });
 
+// Route to handle individual user login
 app.get("/login/:username", async (req, res) => {
   try {
     res.json({}); // Placeholder response
@@ -89,9 +86,9 @@ app.get("/login/:username", async (req, res) => {
   }
 });
 
+// Route to fetch user data based on ID
 app.get("/signup/:id", async (req, res) => {
   try {
-    // Fetch user data based on ID
     const userId = req.params.id;
     const user = await Signup.findById(userId);
 
@@ -106,7 +103,7 @@ app.get("/signup/:id", async (req, res) => {
   }
 });
 
-
+// Route to fetch goals data
 app.get("/api/goals", async (req, res) => {
   try {
     res.json({}); // Placeholder response
@@ -116,6 +113,7 @@ app.get("/api/goals", async (req, res) => {
   }
 });
 
+// Route to fetch dashboard data
 app.get("/api/dashboard", async (req, res) => {
   try {
     res.json({}); // Placeholder response
@@ -125,6 +123,7 @@ app.get("/api/dashboard", async (req, res) => {
   }
 });
 
+// Route to fetch transactions data
 app.get("/api/transactions", async (req, res) => {
   try {
     res.json({}); // Placeholder response
@@ -134,12 +133,12 @@ app.get("/api/transactions", async (req, res) => {
   }
 });
 
+// Route to serve the frontend application
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname_import, '../fintracker/dist/index.html'));
 });
 
-app.use('/', spendingRoute);
-
+// Start the server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

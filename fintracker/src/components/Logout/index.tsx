@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const Logout: React.FC = () => {
-  return <div>Logout Component</div>;
+  useEffect(() => {
+    const handleLogout = () => {
+      // Clear any relevant state or local storage
+      localStorage.removeItem("isLoggedIn");
+
+      // Navigate to Home page
+      window.location.href = "/";
+    };
+
+    handleLogout();
+  }, []);
+
+  return <div>Logging out...</div>;
 };
 
 export default Logout;
