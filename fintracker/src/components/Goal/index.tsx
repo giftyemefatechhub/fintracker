@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "../Dashboard/Dashboard.css";
 
 type GoalProps = {
   goal: number;
@@ -37,17 +38,17 @@ const Goal: React.FC<GoalProps> = ({ goal, setGoal }) => {
   return (
     <div className="goal-container card shadow-sm p-3 mb-5 bg-white rounded">
       <div className="card-body">
-        <h2 className="card-title">Goal</h2>
-        <p className="card-text">Your goal is to save ${goal} this month.</p>
+        <h2 className="goal-title card-title">Goal</h2>
+        <p className="goal-text card-text">Your goal is to save ${goal} this month.</p>
         <div className="input-group mb-3">
           <input
             type="number"
-            className="form-control"
+            className="goal-input form-control"
             value={newGoal}
             onChange={handleGoalChange}
             placeholder="Set new goal"
           />
-          <button className="btn btn-primary" onClick={handleSetGoal}>Set Goal</button>
+          <button className="goal-button btn btn-primary" onClick={handleSetGoal}>Set Goal</button>
         </div>
       </div>
     </div>

@@ -6,11 +6,12 @@ body {
   margin: 0;
   color: mediumslateblue;
 }
-.balance-container {
+.div {
     padding: 20px;
     max-width: 600px;
     margin: 0 auto;
     text-align: center;
+    background-color: blue;
   }
   
   .balance-container h1,

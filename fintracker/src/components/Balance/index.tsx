@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./Balance.css";
+import "../Dashboard/Dashboard.css";
 
 interface BalanceProps {
   balance: number;
@@ -27,8 +28,8 @@ const Balance: React.FC<BalanceProps> = ({ balance, topUpBalance }) => {
   };
 
   return (
-    <div>
-      <h2>Balance: ${balance.toFixed(2)}</h2>
+    <div className="balance-container">
+      <h2 className="balance-title">Balance: ${balance.toFixed(2)}</h2>
       <div>
         <label>
           Amount:
@@ -36,6 +37,7 @@ const Balance: React.FC<BalanceProps> = ({ balance, topUpBalance }) => {
             type="number"
             value={amount}
             onChange={handleAmountChange}
+            className="balance-input"
             placeholder="Enter amount to top up"
           />
         </label>
@@ -43,7 +45,7 @@ const Balance: React.FC<BalanceProps> = ({ balance, topUpBalance }) => {
       <div>
         <label>
           Payment Method:
-          <select value={method} onChange={handleMethodChange}>
+          <select value={method} onChange={handleMethodChange} className="balance-select">
             <option value="cash">Cash</option>
             <option value="swish">Swish</option>
             <option value="stripe">Stripe</option>
@@ -52,7 +54,7 @@ const Balance: React.FC<BalanceProps> = ({ balance, topUpBalance }) => {
           </select>
         </label>
       </div>
-      <button onClick={handleTopUp}>Top Up Balance</button>
+      <button onClick={handleTopUp} className="btn btn-primary">Top Up Balance</button>
     </div>
   );
 };

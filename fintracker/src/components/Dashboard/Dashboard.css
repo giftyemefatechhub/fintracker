@@ -1,32 +1,80 @@
-/* Dashboard.css */
-body {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  color: rgb(60, 34, 192);
-}
+/* Dashboard container */
 .dashboard-container {
-  background-color: #a08fcc;
   padding: 20px;
-  border-radius: 8px;
 }
 
-.dashboard-title {
-  font-size: 2.5rem;
-  color: #343a40;
-}
-
-.dashboard-card {
+/* Header */
+.dashboard-container h1 {
+  font-size: 24px;
   margin-bottom: 20px;
-  border-radius: 8px;
 }
 
-.dashboard-card-body {
+/* Goal component */
+.goal-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
   padding: 20px;
+  margin-bottom: 20px;
 }
 
-.alert {
-  font-size: 1.25rem;
+.goal-container .card-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.goal-container .card-text {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.goal-container .form-control {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* Balance component */
+.balance-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.balance-container h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.balance-container input {
+  width: 100px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.balance-container select {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* Spendings component */
+.spendings-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: rgb(206, 198, 249);
+}
+
+.spendings-container h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.spendings-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.spendings-container li {
+  margin-bottom: 10px;
 }

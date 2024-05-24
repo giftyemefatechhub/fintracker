@@ -1,6 +1,7 @@
-// src/components/Dashboard/index.tsx
 import React from "react";
 import Spendings from "../Spendings";
+import Balance from "../Balance";
+import Goal from "../Goal";
 
 type Transaction = {
   id: number;
@@ -12,8 +13,9 @@ type Transaction = {
   paymentMethod: string;
   paid: boolean;
 };
+
 interface DashboardProps {
-  goal: number; // Add goal to props
+  goal: number;
   setGoal: (newGoal: number) => void;
   balance: number;
   topUpBalance: (amount: number, method: string) => void;
@@ -22,16 +24,20 @@ interface DashboardProps {
   togglePaymentStatus: (id: number) => void;
 }
 
-
 const Dashboard: React.FC<DashboardProps> = ({
+  goal,
+  setGoal,
+  balance,
+  topUpBalance,
   transactions,
   addTransaction,
   togglePaymentStatus,
-  balance
 }) => {
   return (
     <div>
       <h1>Dashboard</h1>
+      <Goal goal={goal} setGoal={setGoal} />
+      <Balance balance={balance} topUpBalance={topUpBalance} />
       <Spendings
         balance={balance}
         transactions={transactions}

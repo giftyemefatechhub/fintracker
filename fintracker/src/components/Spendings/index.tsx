@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Spendings.css";
+import "../Dashboard/Dashboard.css";
 
 type Transaction = {
   id: number;
